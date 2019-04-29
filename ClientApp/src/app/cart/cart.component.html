@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+<body>
+  <div *ngFor="let i of partsOfOrder">
+    <div class="card mb-3 navbar-light" style="background-color: #e3f2fd; max-width: 540px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="https://rarephones.ru/image/cache/catalog/products/nokia/nokia3310-1000x1000.png" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{i.item.company + " " + i.item.model}}</h5>
+            <p class="card-text">{{i.item.price + " ГРН"}}</p>
+            <input type="text" [(ngModel)]="i.amount" class="form-control" />
+            <button type="button" class="btn btn-danger" (click)="deleteFromCart(i)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary">
+    Total: <span class="badge badge-light">{{totalSum}}</span>
+  </button>
+  
+    <div class="form-group">
+      <label for="telephone">Telephone number</label>
+      <input class="form-control" [(ngModel)]="order.telephoneNumber" id="telephone" aria-describedby="telephoneHelp" placeholder="Enter telephone number">
+      <small id="telephoneHelp" class="form-text text-muted">We'll never share your telephone number with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input class="form-control" [(ngModel)]="order.address" id="address" placeholder="Address">
+    </div>
+  
+  <button type="button" (click)="sendOrderToServer()" class="btn btn-primary btn-lg btn-block">Сheckout !</button>
+</body>
+</html>

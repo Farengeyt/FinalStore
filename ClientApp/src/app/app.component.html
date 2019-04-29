@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>EStore</title>
+</head>
+<body>
+  <div class="myNav">
+    <nav-bar (onChoise)="onChanged($event)" (cartOpen)="changeCartStatus($event)" [categories]="categories"></nav-bar>
+  </div>
+  <router-outlet></router-outlet>
+  <div *ngIf="cartStatus; else itemList">
+    <cart [itemsToOrder]="itemsForCart" (curentCart)="outputFromCart($event)"></cart>
+  </div>
+  <ng-template #itemList>
+    <item-list (itemToCart)="itemsCart($event)" [items]="items"></item-list>
+  </ng-template>
+
+</body>
+</html>
